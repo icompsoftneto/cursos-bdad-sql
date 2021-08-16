@@ -1,0 +1,38 @@
+mysql -uroot -p
+create database controle_compras;
+use controle_compras;
+create table compras (id int auto_increment primary key, valor double, data date, recebido boolean, observacoes varchar(255));
+
+desc compras; //ver estrutura da tabela
+
+insert into compras (valor, data, recebido, observacoes) values (1500.0, '2014-05-14', 1, 'geladeira nova');
+select * from compras; //ver todos os dados da tabela compras
+select data, valor, observacoes from compras; //ver somente data, valor e observacoes da tabela compras
+select data, valor from compras where valor > 1000; //mostrar somente os valores acima de 1000
+select data, valor, observacoes from compras where observacoes like 'celular velho%'; // filtrar por palavras: LIKE
+
+=======================
+ATUALIZANDO E EXCLUINDO DADOS
+use controle_compras;
+show tables; //mostra todas as tabelas
+update compras set valor = 5, observacoes = 'GASTO PEQUENO' where valor <50; //atualiza para valor 5 e muda observacao para GASTO PEQUENO onde valor for menor que 50;
+delete from compras where id = 44; //deleta de compras a ID 44 (FK);
+
+alter table compras modify observacoes varchar(255) not null; //alter table muda caracteristica de uma tabela. nesse caso, vai mudar observacoes para campo obrigatorio.
+=======================
+SOMA:
+select sum(valor) from compras //mostrar a soma dos valores
+
+COUNT
+select count(valor) from compras where data > '2010-01-01'; //soma quantos valores tem a partir de 2010
+
+GROUP
+select recebido, sum(valor from compras group by recebido; //seleciona a soma dos valores de recebido 1 e recebido 0
+
+FUNCOES DE AGREGACAO:
+SUM = soma
+AVG = media
+COUNT = conta
+ORDER BY
+SELECT
+
